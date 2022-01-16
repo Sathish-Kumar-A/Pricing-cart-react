@@ -1,5 +1,10 @@
 import './App.css';
 import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
+
+
 const arr=[
   {
     img:"",
@@ -66,20 +71,24 @@ class App extends React.Component{
     
     console.log(data[index].button);
     if(buttonCheck=="Add to Cart"){
-      data[index].button="Remove from Cart";
-      this.setState({arrayData:data,cartCount:this.state.cartCount+1})
+      data[index].button = "Remove from Cart";
+      toast.success("Item added to the cart");
+      this.setState({ arrayData: data, cartCount: this.state.cartCount + 1 });
+      
     }
     else if(buttonCheck=="Remove from Cart"){
-      data[index].button="Add to Cart";
-      this.setState({arrayData:data,cartCount:this.state.cartCount-1})
+      data[index].button = "Add to Cart";
+      toast.error("Item removed from the cart");
+      this.setState({ arrayData: data, cartCount: this.state.cartCount - 1 });
     }
     
   }
   
   render(){
     return(
-      <>
-      <nav class="navbar navbar-expand-md navbar-light bg-light navigation">
+      <div>
+        <nav class="navbar navbar-expand-md navbar-light bg-light navigation">
+          <ToastContainer />
       <div class="container">
         <a class="navbar-brand" href="#">Shop Now</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,7 +135,7 @@ class App extends React.Component{
           </div>
         </div>);})}
     </div>
-    </>
+    </div>
     );
       
     
