@@ -70,13 +70,13 @@ class App extends React.Component{
     var data=[...this.state.arrayData]
     
     console.log(data[index].button);
-    if(buttonCheck=="Add to Cart"){
+    if(buttonCheck==="Add to Cart"){
       data[index].button = "Remove from Cart";
       toast.success("Item added to the cart");
       this.setState({ arrayData: data, cartCount: this.state.cartCount + 1 });
       
     }
-    else if(buttonCheck=="Remove from Cart"){
+    else if(buttonCheck==="Remove from Cart"){
       data[index].button = "Add to Cart";
       toast.error("Item removed from the cart");
       this.setState({ arrayData: data, cartCount: this.state.cartCount - 1 });
@@ -87,34 +87,32 @@ class App extends React.Component{
   render(){
     return(
       <div>
-        <nav class="navbar navbar-expand-md navbar-light bg-light navigation">
+        <nav className="navbar navbar-expand-md navbar-light bg-light navigation">
           <ToastContainer />
-      <div class="container">
-        <a class="navbar-brand" href="#">Shop Now</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+      <div className="container">
+        <p className="navbar-brand navigation-btn">Shop Now</p>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <p className="nav-link active navigation-btn" aria-current="page" >Home</p>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+            <li className="nav-item">
+              <p className="nav-link navigation-btn">About</p>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Shop
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">All Products</a></li>
-                <li><hr class="dropdown-divider" /></li >
-                <li><a class="dropdown-item" href="#">Popular Items</a></li>
-                <li><a class="dropdown-item" href="#">New Arrivals</a></li>
+            <li className="nav-item dropdown">
+              <p className = 'navigation-btn nav-link dropdown-toggle' id = "navbarDropdown"role = "button" data-bs-toggle = "dropdown"  aria-expanded = "false" >Shop</p>
+              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><p className="dropdown-item navigation-btn" >All Products</p></li>
+                <li><hr className="dropdown-divider navigation-btn" /></li >
+                <li><p className="dropdown-item navigation-btn" >Popular Items</p></li>
+                <li><p className="dropdown-item navigation-btn" >New Arrivals</p></li>
               </ul>
             </li>
           </ul>
-          <button className="btn btn-light cartbtn"><i class="fas fa-shopping-cart mx-2"></i>Cart <span class="badge bg-dark mx-2">{this.state.cartCount}</span></button>
+          <button className="btn btn-light cartbtn"><i className="fas fa-shopping-cart mx-2"></i>Cart <span className="badge bg-dark mx-2">{this.state.cartCount}</span></button>
         </div>
       </div>
     </nav>
@@ -126,12 +124,12 @@ class App extends React.Component{
     <div className="shopOuter">
     {arr.map((item,index)=>{
       return(
-        <div className="shopList">
+        <div className="shopList" key={index}>
           <img src={this.state.img} alt="450*300"  width="250px" height="200px" className="image img-fluid"/>
           <div className="shopContent py-4">
               <h3><strong>{item.name}</strong></h3>
               <p>{item.price}</p>
-              <button type="button" class="btn btn-outline-secondary" onClick={()=>this.removeCart(index)}>{this.state.arrayData[index].button}</button>
+              <button type="button" className="btn btn-outline-secondary" onClick={()=>this.removeCart(index)}>{this.state.arrayData[index].button}</button>
           </div>
         </div>);})}
     </div>
